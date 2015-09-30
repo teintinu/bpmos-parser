@@ -1,0 +1,29 @@
+{
+  "name": "khayyam",
+  "version": "0.0.1",
+  "description": "BPM application framework",
+  "main": "lib/khayyam.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thr0w/khayyam.git"
+  },
+  "author": "thr0w",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/thr0w/khayyam/issues"
+  },
+  "homepage": "https://github.com/thr0w/khayyam",
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-mocha": "^2.1.3",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-standard": "^5.2.2",
+    "mdfs": "^1.0.6"
+  }
+}
