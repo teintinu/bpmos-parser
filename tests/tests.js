@@ -21,13 +21,11 @@ mdfs.describe(__dirname + '/cases', 'json',
   }
 )
 
-function reformat(json){
-  try{
-    if (typeof json === 'string')
-      json = JSON.parse(json);
+function reformat (json) {
+  try {
+    if (typeof json === 'string') json = JSON.parse(json)
     return JSON.stringify(json, null, 2)
-  }
-  catch(e){
-    throw new Error("Parsing error: " + e.message + ' on \n' + json);
+  } catch (e) {
+    throw new Error('Parsing error: ' + e.message + ' on \n' + json)
   }
 }

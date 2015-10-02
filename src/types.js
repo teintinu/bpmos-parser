@@ -1,17 +1,6 @@
-import artifact from './artifact'
+import artifacts from './artifacts'
+import application from './application'
 
-var app = artifact.register('application', {
-  properties: [
-    {
-      title: {
-        type: i18n
-      }
-    }
-  ]
-})
-
-var i18n = {
-
+export function initialize () {
+  artifacts.register('application', application)
 }
-
-export default app

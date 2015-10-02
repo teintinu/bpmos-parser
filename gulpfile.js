@@ -7,6 +7,7 @@ var babel = require('gulp-babel')
 // var debug = require('gulp-debug')
 var standard = require('gulp-standard')
 var mocha = require('gulp-mocha')
+// var stripDebug = require('gulp-strip-debug');
 
 gulp.task('standard linter', function () {
   return gulp.src(['./**/*.js', '!lib/es5/**', '!node_modules/**'])
@@ -20,6 +21,7 @@ gulp.task('build with babel', function () {
   return gulp.src('src/**/*.js')
     .pipe(sourcemaps.init())
     // .pipe(debug({title: 'babel es6 to es5:'}))
+    // .pipe(stripDebug())
     .pipe(babel())
     // .pipe(concat('khayyam.js'))
     .pipe(sourcemaps.write('.'))
