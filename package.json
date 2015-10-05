@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/thr0w/khayyam",
   "devDependencies": {
+    "babel": "^5.8.23",
     "chai": "^3.3.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
