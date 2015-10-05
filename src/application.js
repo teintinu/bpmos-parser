@@ -5,7 +5,8 @@ export default {
   properties: [
     {
       name: 'title',
-      type: i18n
+      type: i18n,
+      required: true
     }
   ]
 }

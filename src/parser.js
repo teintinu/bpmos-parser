@@ -53,7 +53,7 @@ export function parseArtifact (name, obj) {
 }
 
 function parseProperty (prop, obj, obj2) {
-  if (obj2[prop.name]) obj = obj2
+  if (obj2 && obj2[prop.name]) obj = obj2
   var p = obj[prop.name]
   if (!p) {
     if (prop.required) throwAt(obj, prop.name + ' is required')
@@ -63,8 +63,6 @@ function parseProperty (prop, obj, obj2) {
 }
 
 function throwAt (obj, msg) {
-  console.dir(obj)
-  console.dir(msg)
   var err = new Error([
     msg, ' at ',
     obj.$$file, ':',

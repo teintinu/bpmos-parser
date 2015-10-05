@@ -10,7 +10,10 @@ var mocha = require('gulp-mocha')
 // var stripDebug = require('gulp-strip-debug');
 
 gulp.task('standard linter', function () {
-  return gulp.src(['./**/*.js', '!lib/es5/**', '!node_modules/**'])
+  return gulp.src(['./**/*.js',
+                   '!lib/es5/**',
+                   '!coverage/**',
+                   '!node_modules/**'])
     .pipe(standard())
     .pipe(standard.reporter('default', {
       breakOnError: true
