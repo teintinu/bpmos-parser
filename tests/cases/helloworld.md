@@ -12,12 +12,19 @@ application:
 ```json
 {
     "type": "application",
+    "name": "khayyam",
     "title": {
-      "type": "message",
-      "messages": {
-        "pt_BR": "Olá mundo",
-        "en": "Hello World"
-      }
+      "type": "messages",
+      "messages": [
+        { "type": "message", 
+          "language": "pt_BR",
+          "message": "Olá mundo"
+        },
+        { "type": "message",
+          "language": "en",
+          "message": "Hello World"
+        }
+      ]
     }
 }
 ```

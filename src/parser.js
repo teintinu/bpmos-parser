@@ -1,11 +1,11 @@
 import yaml from '../yaml'
-import artifact from './artifact'
-import types from './types'
+import artifacts from './artifacts'
+import {initialize} from './types'
 
 import { basename } from 'path'
 import { readFileSync } from 'fs'
 
-types.initialize()
+initialize()
 
 export function parseFile (file) {
   var file_content = readFileSync(file, 'utf-8')
@@ -42,22 +42,24 @@ export function parseArtifact (name, obj) {
   var keys = Object.keys(obj)
   var type = keys[0]
   var obj2 = obj[type]
-  var ret = artifact.createArtifact(type, name)
+  var ret = artifacts.createArtifact(type, name)
   if (!ret) throwAt(obj, 'invalid artifact type ' + type)
-  var props = artifact.getProperties(type)
+  var props = ret.getProperties(type)
   props.forEach(function (prop) {
     var p = parseProperty(prop, obj, obj2)
-    if (p !== undefined) ret[prop] = p
+    if (p !== undefined) ret[prop.name] = p
   })
   return ret
 }
 
 function parseProperty (prop, obj, obj2) {
   if (obj2[prop.name]) obj = obj2
-  if (!obj[prop.name]) {
+  var p = obj[prop.name]
+  if (!p) {
     if (prop.required) throwAt(obj, prop.name + ' is required')
     return undefined
   }
+  return prop.type.parse(p)
 }
 
 function throwAt (obj, msg) {
