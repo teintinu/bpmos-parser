@@ -29,7 +29,7 @@ gulp.task('build with babel', function () {
 })
 
 gulp.task('test with mocha', ['build with babel'], function () {
-  return gulp.src('tests/tests.js', {read: false})
+  return gulp.src('test/tests.js', {read: false})
     .pipe(mocha({reporter: 'spec'}))
 })
 
