@@ -1,5 +1,8 @@
+/** globals: expect */
+
 var km = require('../lib/khayyam')
 var mdfs = require('mdfs')
+import stringify from 'json-stable-stringify'
 
 mdfs.describe(__dirname + '/cases', 'json',
   function (test) {
@@ -24,7 +27,7 @@ mdfs.describe(__dirname + '/cases', 'json',
 function reformat (json) {
   try {
     if (typeof json === 'string') json = JSON.parse(json)
-    return JSON.stringify(json, null, 2)
+    return stringify(json, {space: 2})
   } catch (e) {
     throw new Error('Parsing error: ' + e.message + ' on \n' + json)
   }

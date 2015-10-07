@@ -51,12 +51,20 @@ export function parseArtifact (name, obj) {
     if (p !== undefined) ret[prop.name] = p
   })
   checkInvalidProperties(obj)
+  ret.loc = loc(obj)
   return ret
+}
+
+export function loc (obj) {
+  return {
+    file: obj.$$file,
+    start: obj.$$loc.start,
+    end: obj.$$loc.end
+  }
 }
 
 function parseProperty (prop, obj, obj2) {
   if (!prop.type) {
-    console.dir(prop)
     throwAt(obj, prop.name + ' has no valid type')
   }
   if (obj2 && obj2[prop.name]) obj = obj2
@@ -65,7 +73,9 @@ function parseProperty (prop, obj, obj2) {
     if (prop.required) throwAt(obj, prop.name + ' is required')
     return undefined
   }
-  return prop.type.parse(p)
+  var pr = prop.type.parse(p, {loc})
+  pr.loc = loc(p)
+  return pr
 }
 
 function throwAt (obj, msg) {
