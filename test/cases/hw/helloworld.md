@@ -1,11 +1,12 @@
 # Hello world
 
 # khayyam
-```khayyam
+```yaml
 application:
   title:
     pt_BR: Olá mundo
     en: Hello World
+  languages: pt_BR, en
 ```
 
 # json
@@ -25,6 +26,7 @@ application:
           "message": "Hello World"
         }
       ]
-    }
+    },
+    "languages": ["pt_BR", "en"]
 }
 ```

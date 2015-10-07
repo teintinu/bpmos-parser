@@ -22,4 +22,4 @@ var artifacts = {
   }
 }
 
-export default artifacts
+export default artifacts;

@@ -53,6 +53,10 @@ export function parseArtifact (name, obj) {
 }
 
 function parseProperty (prop, obj, obj2) {
+  if (!prop.type) {
+    console.dir(prop)
+    throwAt(obj, prop.name + ' has no valid type')
+  }
   if (obj2 && obj2[prop.name]) obj = obj2
   var p = obj[prop.name]
   if (!p) {
@@ -72,3 +76,4 @@ function throwAt (obj, msg) {
   err.loc = obj.$$loc
   throw err
 }
+
