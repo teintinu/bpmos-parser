@@ -42,6 +42,7 @@ export function parseArtifact (name, obj) {
   var keys = Object.keys(obj)
   var type = keys[0]
   var obj2 = obj[type]
+  if (obj2) obj2.$$used = true
   var ret = artifacts.createArtifact(type, name)
   if (!ret) throwAt(obj, 'invalid artifact type ' + type)
   var props = ret.getProperties(type)
@@ -49,6 +50,7 @@ export function parseArtifact (name, obj) {
     var p = parseProperty(prop, obj, obj2)
     if (p !== undefined) ret[prop.name] = p
   })
+  checkInvalidProperties(obj)
   return ret
 }
 
@@ -77,3 +79,15 @@ function throwAt (obj, msg) {
   throw err
 }
 
+function checkInvalidProperties (obj) {
+  Object.keys(obj).forEach(function (n) {
+    if (/^\$\$/.test(n)) return
+    var p = obj[n]
+    if (p.$$arr) {
+      p.$$arr.forEach(checkInvalidProperties)
+    } else {
+      if (!p || !p.$$used) throwAt(p, n + ' is not a valid property')
+      if (!p.$$val) checkInvalidProperties(p)
+    }
+  })
+}
